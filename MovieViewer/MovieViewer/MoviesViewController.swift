@@ -15,13 +15,32 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     var movies: [NSDictionary]?
     
+    var alert: UIAlertController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        alert = UIAlertController(title: nil, message: "Hunting movie data...", preferredStyle: .Alert)
+        self.presentViewController(alert, animated: true, completion: nil)
         
+        self.pollMovieData({
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func pollMovieData(completion:(()->())?)
+    {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
         let request = NSURLRequest(
@@ -37,22 +56,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
+                if let completion = completion {
+                    completion()
+                }
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
                             print("response: \(responseDictionary)")
-                         
+                            
                             self.movies = responseDictionary["results"] as? [NSDictionary]
                             self.tableView.reloadData()
                     }
                 }
         })
         task.resume()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
