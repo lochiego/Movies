@@ -9,26 +9,29 @@
 import UIKit
 import AFNetworking
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
 
-    @IBOutlet weak var tableView: UITableView!
 
+class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    @IBOutlet weak var collectionView: UICollectionView!
     var movies: [NSDictionary]?
     
     var alert: UIAlertController!
-    
     var refresh: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         refresh = UIRefreshControl()
         refresh.addTarget(self, action: Selector("refreshData"), forControlEvents: .ValueChanged)
-        tableView.addSubview(refresh)
+        collectionView.addSubview(refresh)
+        collectionView.alwaysBounceVertical = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -54,9 +57,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func pollMovieData(completion:(()->())?)
     {
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(
+            let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
             timeoutInterval: 10)
@@ -78,7 +79,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             print("response: \(responseDictionary)")
                             
                             self.movies = responseDictionary["results"] as? [NSDictionary]
-                            self.tableView.reloadData()
+                            self.collectionView.reloadData()
                     }
                 }
                 else {
@@ -95,7 +96,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         task.resume()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         if let movies = movies {
             return movies.count
@@ -103,15 +104,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return 0
     }
     
-    @available(iOS 2.0, *)
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
         let movie = movies![indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-
+        
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {
             let imageUrl = NSURL(string: baseUrl + posterPath)
@@ -121,10 +118,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             cell.posterView.image = nil
         }
         
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        
-        print("row \(indexPath.row)")
         return cell
     }
 
