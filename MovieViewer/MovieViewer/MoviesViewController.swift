@@ -59,14 +59,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let completion = completion {
                     completion()
                 }
-                if let data = dataOrNil {
-                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                        data, options:[]) as? NSDictionary {
-                            print("response: \(responseDictionary)")
-                            
-                            self.movies = responseDictionary["results"] as? [NSDictionary]
-                            self.tableView.reloadData()
-                    }
+                else {
+                    let alert = UIAlertController(title: "Warning", message: "The movies are hiding. Get to the network and hunt again.", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Hunt", style: .Default, handler: { (_) -> Void in
+                        self.pollMovieData(nil)
+                    }))
+                    alert.addAction(UIAlertAction(title: "Give Up", style: .Destructive, handler: { (_) -> Void in
+                        exit(1)
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
         })
         task.resume()
