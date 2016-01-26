@@ -17,12 +17,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var alert: UIAlertController!
     
+    var refresh: UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+        
+        refresh = UIRefreshControl()
+        refresh.addTarget(self, action: Selector("refreshData"), forControlEvents: .ValueChanged)
+        tableView.addSubview(refresh)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -37,6 +43,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refreshData()
+    {
+        pollMovieData({
+            self.refresh.endRefreshing()
+        })
     }
     
     func pollMovieData(completion:(()->())?)
@@ -58,6 +71,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             completionHandler: { (dataOrNil, response, error) in
                 if let completion = completion {
                     completion()
+                }
+                if let data = dataOrNil {
+                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                        data, options:[]) as? NSDictionary {
+                            print("response: \(responseDictionary)")
+                            
+                            self.movies = responseDictionary["results"] as? [NSDictionary]
+                            self.tableView.reloadData()
+                    }
                 }
                 else {
                     let alert = UIAlertController(title: "Warning", message: "The movies are hiding. Get to the network and hunt again.", preferredStyle: .Alert)
