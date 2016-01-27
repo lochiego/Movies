@@ -35,7 +35,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     override func viewDidAppear(animated: Bool) {
-        alert = UIAlertController(title: nil, message: "Hunting movie data...", preferredStyle: .Alert)
+        alert = UIAlertController(title: nil, message: "Getting movie data...", preferredStyle: .Alert)
         self.presentViewController(alert, animated: true, completion: nil)
         
         self.pollMovieData({
@@ -83,7 +83,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
                     }
                 }
                 else {
-                    let alert = UIAlertController(title: "Warning", message: "The movies are hiding. Get to the network and hunt again.", preferredStyle: .Alert)
+                    let alert = UIAlertController(title: "Warning", message: "You're out of range. Get to the Internet and try again.", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Hunt", style: .Default, handler: { (_) -> Void in
                         self.pollMovieData(nil)
                     }))
