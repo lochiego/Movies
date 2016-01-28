@@ -21,6 +21,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     var alert: UIAlertController!
     var refresh: UIRefreshControl!
     
+    @IBOutlet weak var layoutToggle: UIButton!
+    
 //    let gridLayout = MoviesGridLayout()
 //    let tableLayout = MoviesTableLayout()
     
@@ -35,6 +37,9 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         refresh.addTarget(self, action: Selector("refreshData"), forControlEvents: .ValueChanged)
         collectionView.addSubview(refresh)
         collectionView.alwaysBounceVertical = true
+        
+        layoutToggle.clipsToBounds = true
+        layoutToggle.layer.cornerRadius = 22
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -120,17 +125,11 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let movie = movies![indexPath.row]
         
-        if tableLayout {
-            let title = movie["title"] as! String
-            let overview = movie["overview"] as! String
-            
-            cell.titleLabel.text = tableLayout ? title : nil
-            cell.overviewLabel.text = tableLayout ? overview : nil
-        }
-        else {
-            cell.titleLabel.text = nil
-            cell.overviewLabel.text = nil
-        }
+        let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
+        
+        cell.titleLabel.text = title
+        cell.overviewLabel.text = overview
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {
@@ -153,5 +152,10 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func toggleLayout(sender: AnyObject) {
+        tableLayout = !tableLayout
+        self.collectionView.collectionViewLayout.invalidateLayout()
+    }
 
 }
