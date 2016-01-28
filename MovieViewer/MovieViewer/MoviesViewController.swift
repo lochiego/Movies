@@ -127,9 +127,11 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
+        let rating = movie["vote_average"] as! Double
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        cell.ratingLabel.text = rating > 0 ? "\(rating)" : "N/A"
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {

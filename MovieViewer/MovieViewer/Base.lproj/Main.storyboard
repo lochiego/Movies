@@ -48,12 +48,21 @@
                                                     <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.77" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sJ5-p3-2PT">
+                                                    <rect key="frame" x="8" y="183" width="34" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                    <color key="textColor" red="0.18823529411764706" green="0.086274509803921567" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
                                             <outlet property="overviewLabel" destination="4Ek-hm-YCp" id="fEz-Dy-Fxt"/>
                                             <outlet property="posterView" destination="IqQ-Q6-X1F" id="Qe8-tb-sXF"/>
+                                            <outlet property="ratingLabel" destination="sJ5-p3-2PT" id="1cT-NI-EZK"/>
                                             <outlet property="titleLabel" destination="5yf-2N-ET8" id="1rq-C4-U6G"/>
                                         </connections>
                                     </collectionViewCell>
@@ -62,7 +71,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="z3t-2b-Qx8">
                                 <rect key="frame" x="256" y="504" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.63529411764705879" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="toggleLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lIg-2B-GgR"/>
                                 </connections>
