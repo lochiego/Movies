@@ -112,13 +112,25 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     var tableLayout: Bool = false
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return !tableLayout ? tableSize : gridSize
+        return tableLayout ? tableSize : gridSize
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
         let movie = movies![indexPath.row]
+        
+        if tableLayout {
+            let title = movie["title"] as! String
+            let overview = movie["overview"] as! String
+            
+            cell.titleLabel.text = tableLayout ? title : nil
+            cell.overviewLabel.text = tableLayout ? overview : nil
+        }
+        else {
+            cell.titleLabel.text = nil
+            cell.overviewLabel.text = nil
+        }
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {
