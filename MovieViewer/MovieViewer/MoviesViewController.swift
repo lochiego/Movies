@@ -21,6 +21,9 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     var alert: UIAlertController!
     var refresh: UIRefreshControl!
     
+//    let gridLayout = MoviesGridLayout()
+//    let tableLayout = MoviesTableLayout()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,6 +105,14 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             return movies.count
         }
         return 0
+    }
+    
+    let gridSize = CGSize(width: 150, height: 225)
+    let tableSize = CGSize(width: 320, height: 180)
+    var tableLayout: Bool = false
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return !tableLayout ? tableSize : gridSize
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
