@@ -13,6 +13,8 @@ let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
 
 let urlString = "https://api.themoviedb.org/3/movie/"
 
+var session: NSURLSession!
+
 class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let nowPlayingUrl = NSURL(string: "\(urlString)now_playing?api_key=\(apiKey)")
@@ -34,6 +36,12 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        session = NSURLSession(
+            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate: nil,
+            delegateQueue: NSOperationQueue.mainQueue()
+        )
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -76,12 +84,6 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             URL: nowPlayingUrl!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
             timeoutInterval: 10)
-        
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate: nil,
-            delegateQueue: NSOperationQueue.mainQueue()
-        )
         
         let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in

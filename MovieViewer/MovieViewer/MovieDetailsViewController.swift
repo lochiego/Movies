@@ -13,11 +13,14 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var posterView: UIImageView!
     @IBOutlet weak var averageLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var runtimeLabel: UILabel!
+    @IBOutlet weak var castLabel: UILabel!
     
     var movie: NSDictionary!
+    var movieAltData: NSDictionary?
     var poster: UIImage!
-    var credits: NSDictionary?
-    
+    var credits: [NSDictionary]?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,30 +45,47 @@ class MovieDetailsViewController: UIViewController {
         posterView.image = poster
         
         loadMovieInfo()
+        loadCreditsInfo()
+    }
+    
+    func fillMovieAltData()
+    {
+        let runtime = movieAltData!["runtime"] as! Int
+        
+        runtimeLabel.text = "Runtime: \(runtime) min"
+    }
+    
+    func fillCreditsData()
+    {
+        var creditString = "Cast: "
+        if let credits = credits {
+            for role in credits {
+                creditString += role["name"]! as! String + ", "
+            }
+            creditString = creditString.substringToIndex(creditString.endIndex.predecessor())
+        }
+        
+        castLabel.text = creditString
     }
     
     func loadMovieInfo()
     {
-        let url = NSURL(string: "\(urlString)\(movie["id"])/credits?api_key=\(apiKey)")
+        let url = NSURL(string: "\(urlString)\(movie["id"]!)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
             timeoutInterval: 10)
-        
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate: nil,
-            delegateQueue: NSOperationQueue.mainQueue()
-        )
         
         let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-                            print("response: \(responseDictionary)")
+//                            print("response: \(responseDictionary)")
                             
-                            self.credits = responseDictionary["results"] as? NSDictionary
+                            self.movieAltData = responseDictionary
+                            
+                            self.fillMovieAltData()
                     }
                 }
                 else {
@@ -81,21 +101,38 @@ class MovieDetailsViewController: UIViewController {
         })
         task.resume()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    func loadCreditsInfo() {
+        let url = NSURL(string: "\(urlString)\(movie["id"]!)/credits?api_key=\(apiKey)")
+        let request = NSURLRequest(
+            URL: url!,
+            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
+            timeoutInterval: 10)
+        
+        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
+            completionHandler: { (dataOrNil, response, error) in
+                if let data = dataOrNil {
+                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                        data, options:[]) as? NSDictionary {
+                            print("response: \(responseDictionary)")
+                            
+                            self.credits = responseDictionary["cast"] as? [NSDictionary]
+                            self.fillCreditsData()
+                    }
+                }
+                else {
+                    let alert = UIAlertController(title: "Warning", message: "You're out of range. Get to the Internet and try again.", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "Hunt", style: .Default, handler: { (_) -> Void in
+                        self.loadMovieInfo()
+                    }))
+                    alert.addAction(UIAlertAction(title: "Give Up", style: .Destructive, handler: { (_) -> Void in
+                        exit(1)
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+        })
+        task.resume()
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
 
 }
