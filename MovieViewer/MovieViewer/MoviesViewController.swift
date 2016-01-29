@@ -9,30 +9,41 @@
 import UIKit
 import AFNetworking
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
 
-    @IBOutlet weak var tableView: UITableView!
 
+class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    @IBOutlet weak var collectionView: UICollectionView!
     var movies: [NSDictionary]?
     
     var alert: UIAlertController!
-    
     var refresh: UIRefreshControl!
+    
+    @IBOutlet weak var layoutToggle: UIButton!
+    
+//    let gridLayout = MoviesGridLayout()
+//    let tableLayout = MoviesTableLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         refresh = UIRefreshControl()
         refresh.addTarget(self, action: Selector("refreshData"), forControlEvents: .ValueChanged)
-        tableView.addSubview(refresh)
+        collectionView.addSubview(refresh)
+        collectionView.alwaysBounceVertical = true
+        
+        layoutToggle.clipsToBounds = true
+        layoutToggle.layer.cornerRadius = 22
     }
     
     override func viewDidAppear(animated: Bool) {
-        alert = UIAlertController(title: nil, message: "Hunting movie data...", preferredStyle: .Alert)
+        alert = UIAlertController(title: nil, message: "Getting movie data...", preferredStyle: .Alert)
         self.presentViewController(alert, animated: true, completion: nil)
         
         self.pollMovieData({
@@ -54,9 +65,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func pollMovieData(completion:(()->())?)
     {
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(
+            let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
             timeoutInterval: 10)
@@ -78,11 +87,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             print("response: \(responseDictionary)")
                             
                             self.movies = responseDictionary["results"] as? [NSDictionary]
-                            self.tableView.reloadData()
+                            self.collectionView.reloadData()
                     }
                 }
                 else {
-                    let alert = UIAlertController(title: "Warning", message: "The movies are hiding. Get to the network and hunt again.", preferredStyle: .Alert)
+                    let alert = UIAlertController(title: "Warning", message: "You're out of range. Get to the Internet and try again.", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "Hunt", style: .Default, handler: { (_) -> Void in
                         self.pollMovieData(nil)
                     }))
@@ -95,7 +104,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         task.resume()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         if let movies = movies {
             return movies.count
@@ -103,15 +112,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return 0
     }
     
-    @available(iOS 2.0, *)
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+    let gridSize = CGSize(width: 150, height: 225)
+    let tableSize = CGSize(width: 320, height: 180)
+    var tableLayout: Bool = false
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return tableLayout ? tableSize : gridSize
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
         let movie = movies![indexPath.row]
+        
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
-
+        
+        cell.titleLabel.text = title
+        cell.overviewLabel.text = overview
+        
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {
             let imageUrl = NSURL(string: baseUrl + posterPath)
@@ -121,10 +140,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             cell.posterView.image = nil
         }
         
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        
-        print("row \(indexPath.row)")
         return cell
     }
 
@@ -137,5 +152,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func toggleLayout(sender: AnyObject) {
+        tableLayout = !tableLayout
+        self.collectionView.collectionViewLayout.invalidateLayout()
+    }
 
 }
