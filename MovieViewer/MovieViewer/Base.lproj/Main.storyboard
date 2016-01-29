@@ -72,7 +72,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="z3t-2b-Qx8">
                                 <rect key="frame" x="256" y="504" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.63529411764705879" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="TableButton.png"/>
                                 <connections>
                                     <action selector="toggleLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lIg-2B-GgR"/>
                                 </connections>
@@ -206,4 +206,7 @@
             <point key="canvasLocation" x="162" y="366"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TableButton.png" width="44" height="44"/>
+    </resources>
 </document>

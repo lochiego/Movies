@@ -47,9 +47,6 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.addSubview(refresh)
         collectionView.alwaysBounceVertical = true
         
-        layoutToggle.clipsToBounds = true
-        layoutToggle.layer.cornerRadius = 22
-        
         self.pollMovieData({
             self.dismissViewControllerAnimated(true, completion: nil)
             self.firstLaunch = false
@@ -154,6 +151,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func toggleLayout(sender: AnyObject) {
         tableLayout = !tableLayout
         self.collectionView.collectionViewLayout.invalidateLayout()
+        let newImage = UIImage(named: tableLayout ? "GridButton" : "TableButton")
+        layoutToggle.setImage(newImage, forState: .Normal)
     }
 
     
