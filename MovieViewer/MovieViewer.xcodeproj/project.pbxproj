@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		0724E6C11C5AC9B8008AC5EF /* MoviesTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724E6C01C5AC9B8008AC5EF /* MoviesTableLayout.swift */; };
 		0724E6C31C5ADFD7008AC5EF /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724E6C21C5ADFD7008AC5EF /* MovieDetailsViewController.swift */; };
-		0777FCED1C5B12AF00C6A064 /* StarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCE71C5B12AF00C6A064 /* StarIcon.png */; };
-		0777FCEE1C5B12AF00C6A064 /* StarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCE81C5B12AF00C6A064 /* StarIcon@2x.png */; };
-		0777FCEF1C5B12AF00C6A064 /* StarIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCE91C5B12AF00C6A064 /* StarIcon@3x.png */; };
-		0777FCF01C5B12AF00C6A064 /* StarIconEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCEA1C5B12AF00C6A064 /* StarIconEmpty.png */; };
-		0777FCF11C5B12AF00C6A064 /* StarIconEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCEB1C5B12AF00C6A064 /* StarIconEmpty@2x.png */; };
-		0777FCF21C5B12AF00C6A064 /* StarIconEmpty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCEC1C5B12AF00C6A064 /* StarIconEmpty@3x.png */; };
 		07BB40641C544F820001D2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BB40631C544F820001D2B2 /* AppDelegate.swift */; };
 		07BB40691C544F820001D2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BB40671C544F820001D2B2 /* Main.storyboard */; };
 		07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BB406A1C544F820001D2B2 /* Assets.xcassets */; };
@@ -27,12 +21,6 @@
 /* Begin PBXFileReference section */
 		0724E6C01C5AC9B8008AC5EF /* MoviesTableLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableLayout.swift; sourceTree = "<group>"; };
 		0724E6C21C5ADFD7008AC5EF /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
-		0777FCE71C5B12AF00C6A064 /* StarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarIcon.png; sourceTree = "<group>"; };
-		0777FCE81C5B12AF00C6A064 /* StarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarIcon@2x.png"; sourceTree = "<group>"; };
-		0777FCE91C5B12AF00C6A064 /* StarIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarIcon@3x.png"; sourceTree = "<group>"; };
-		0777FCEA1C5B12AF00C6A064 /* StarIconEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarIconEmpty.png; sourceTree = "<group>"; };
-		0777FCEB1C5B12AF00C6A064 /* StarIconEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarIconEmpty@2x.png"; sourceTree = "<group>"; };
-		0777FCEC1C5B12AF00C6A064 /* StarIconEmpty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarIconEmpty@3x.png"; sourceTree = "<group>"; };
 		07BB40601C544F820001D2B2 /* MovieViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB40631C544F820001D2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BB40681C544F820001D2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,19 +46,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0777FCE61C5B12AF00C6A064 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0777FCE71C5B12AF00C6A064 /* StarIcon.png */,
-				0777FCE81C5B12AF00C6A064 /* StarIcon@2x.png */,
-				0777FCE91C5B12AF00C6A064 /* StarIcon@3x.png */,
-				0777FCEA1C5B12AF00C6A064 /* StarIconEmpty.png */,
-				0777FCEB1C5B12AF00C6A064 /* StarIconEmpty@2x.png */,
-				0777FCEC1C5B12AF00C6A064 /* StarIconEmpty@3x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		07BB40571C544F820001D2B2 = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +74,6 @@
 				07BB406A1C544F820001D2B2 /* Assets.xcassets */,
 				07BB406C1C544F820001D2B2 /* LaunchScreen.storyboard */,
 				07BB406F1C544F820001D2B2 /* Info.plist */,
-				0777FCE61C5B12AF00C6A064 /* Resources */,
 			);
 			path = MovieViewer;
 			sourceTree = "<group>";
@@ -203,12 +177,6 @@
 			files = (
 				07BB406E1C544F820001D2B2 /* LaunchScreen.storyboard in Resources */,
 				07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */,
-				0777FCF01C5B12AF00C6A064 /* StarIconEmpty.png in Resources */,
-				0777FCF11C5B12AF00C6A064 /* StarIconEmpty@2x.png in Resources */,
-				0777FCF21C5B12AF00C6A064 /* StarIconEmpty@3x.png in Resources */,
-				0777FCEF1C5B12AF00C6A064 /* StarIcon@3x.png in Resources */,
-				0777FCED1C5B12AF00C6A064 /* StarIcon.png in Resources */,
-				0777FCEE1C5B12AF00C6A064 /* StarIcon@2x.png in Resources */,
 				07BB40691C544F820001D2B2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

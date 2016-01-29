@@ -28,10 +28,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     var firstLaunch = true
     
     @IBOutlet weak var layoutToggle: UIButton!
-    
-//    let gridLayout = MoviesGridLayout()
-//    let tableLayout = MoviesTableLayout()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
