@@ -14,7 +14,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var averageLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var runtimeLabel: UILabel!
-    @IBOutlet weak var castLabel: UILabel!
+    @IBOutlet weak var castLabel: UITextView!
+    @IBOutlet weak var overviewLabel: UITextView!
     
     var movie: NSDictionary!
     var movieAltData: NSDictionary?
@@ -28,6 +29,7 @@ class MovieDetailsViewController: UIViewController {
         self.title = movie["title"] as? String
         let average = movie["vote_average"] as? Double
         let count = movie["vote_count"] as? Int
+        let overview = movie["overview"] as? String
         
         if let average = average {
             averageLabel.text = "\(average)"
@@ -41,6 +43,12 @@ class MovieDetailsViewController: UIViewController {
         else {
             countLabel.text = nil
         }
+        if let overview = overview {
+            overviewLabel.text = overview
+        }
+        else {
+            overviewLabel.text = "Synopsis not available"
+        }
         
         posterView.image = poster
         
@@ -52,12 +60,12 @@ class MovieDetailsViewController: UIViewController {
     {
         let runtime = movieAltData!["runtime"] as! Int
         
-        runtimeLabel.text = "Runtime: \(runtime) min"
+        runtimeLabel.text = "\(runtime) min"
     }
     
     func fillCreditsData()
     {
-        var creditString = "Cast: "
+        var creditString = String()
         if let credits = credits {
             for role in credits {
                 creditString += role["name"]! as! String + ", "
