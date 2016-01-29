@@ -17,6 +17,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var castLabel: UITextView!
     @IBOutlet weak var overviewLabel: UITextView!
     
+    @IBOutlet weak var rateView: UIView!
+    
     var movie: NSDictionary!
     var movieAltData: NSDictionary?
     var poster: UIImage!
