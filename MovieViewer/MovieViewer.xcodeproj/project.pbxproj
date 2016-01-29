@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		0724E6C11C5AC9B8008AC5EF /* MoviesTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724E6C01C5AC9B8008AC5EF /* MoviesTableLayout.swift */; };
 		0724E6C31C5ADFD7008AC5EF /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724E6C21C5ADFD7008AC5EF /* MovieDetailsViewController.swift */; };
+		0777FCFD1C5B2D5200C6A064 /* Buttons.pxm in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCF61C5B2D5200C6A064 /* Buttons.pxm */; };
+		0777FCFE1C5B2D5200C6A064 /* GridButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCF71C5B2D5200C6A064 /* GridButton.png */; };
+		0777FCFF1C5B2D5200C6A064 /* GridButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCF81C5B2D5200C6A064 /* GridButton@2x.png */; };
+		0777FD001C5B2D5200C6A064 /* GridButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCF91C5B2D5200C6A064 /* GridButton@3x.png */; };
+		0777FD011C5B2D5200C6A064 /* TableButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCFA1C5B2D5200C6A064 /* TableButton.png */; };
+		0777FD021C5B2D5200C6A064 /* TableButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCFB1C5B2D5200C6A064 /* TableButton@2x.png */; };
+		0777FD031C5B2D5200C6A064 /* TableButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCFC1C5B2D5200C6A064 /* TableButton@3x.png */; };
 		07BB40641C544F820001D2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BB40631C544F820001D2B2 /* AppDelegate.swift */; };
 		07BB40691C544F820001D2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BB40671C544F820001D2B2 /* Main.storyboard */; };
 		07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BB406A1C544F820001D2B2 /* Assets.xcassets */; };
@@ -21,6 +28,13 @@
 /* Begin PBXFileReference section */
 		0724E6C01C5AC9B8008AC5EF /* MoviesTableLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableLayout.swift; sourceTree = "<group>"; };
 		0724E6C21C5ADFD7008AC5EF /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		0777FCF61C5B2D5200C6A064 /* Buttons.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = Buttons.pxm; sourceTree = "<group>"; };
+		0777FCF71C5B2D5200C6A064 /* GridButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridButton.png; sourceTree = "<group>"; };
+		0777FCF81C5B2D5200C6A064 /* GridButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridButton@2x.png"; sourceTree = "<group>"; };
+		0777FCF91C5B2D5200C6A064 /* GridButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridButton@3x.png"; sourceTree = "<group>"; };
+		0777FCFA1C5B2D5200C6A064 /* TableButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableButton.png; sourceTree = "<group>"; };
+		0777FCFB1C5B2D5200C6A064 /* TableButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TableButton@2x.png"; sourceTree = "<group>"; };
+		0777FCFC1C5B2D5200C6A064 /* TableButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TableButton@3x.png"; sourceTree = "<group>"; };
 		07BB40601C544F820001D2B2 /* MovieViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB40631C544F820001D2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BB40681C544F820001D2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,6 +60,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0777FCF51C5B2D5200C6A064 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0777FCF61C5B2D5200C6A064 /* Buttons.pxm */,
+				0777FCF71C5B2D5200C6A064 /* GridButton.png */,
+				0777FCF81C5B2D5200C6A064 /* GridButton@2x.png */,
+				0777FCF91C5B2D5200C6A064 /* GridButton@3x.png */,
+				0777FCFA1C5B2D5200C6A064 /* TableButton.png */,
+				0777FCFB1C5B2D5200C6A064 /* TableButton@2x.png */,
+				0777FCFC1C5B2D5200C6A064 /* TableButton@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		07BB40571C544F820001D2B2 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +102,7 @@
 				07BB406A1C544F820001D2B2 /* Assets.xcassets */,
 				07BB406C1C544F820001D2B2 /* LaunchScreen.storyboard */,
 				07BB406F1C544F820001D2B2 /* Info.plist */,
+				0777FCF51C5B2D5200C6A064 /* Resources */,
 			);
 			path = MovieViewer;
 			sourceTree = "<group>";
@@ -175,9 +204,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0777FD031C5B2D5200C6A064 /* TableButton@3x.png in Resources */,
+				0777FD021C5B2D5200C6A064 /* TableButton@2x.png in Resources */,
+				0777FCFF1C5B2D5200C6A064 /* GridButton@2x.png in Resources */,
 				07BB406E1C544F820001D2B2 /* LaunchScreen.storyboard in Resources */,
+				0777FD001C5B2D5200C6A064 /* GridButton@3x.png in Resources */,
+				0777FCFD1C5B2D5200C6A064 /* Buttons.pxm in Resources */,
 				07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */,
 				07BB40691C544F820001D2B2 /* Main.storyboard in Resources */,
+				0777FD011C5B2D5200C6A064 /* TableButton.png in Resources */,
+				0777FCFE1C5B2D5200C6A064 /* GridButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

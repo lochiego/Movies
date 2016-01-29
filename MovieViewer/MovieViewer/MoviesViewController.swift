@@ -47,9 +47,6 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.addSubview(refresh)
         collectionView.alwaysBounceVertical = true
         
-        layoutToggle.clipsToBounds = true
-        layoutToggle.layer.cornerRadius = 22
-        
         self.pollMovieData({
             self.dismissViewControllerAnimated(true, completion: nil)
             self.firstLaunch = false
@@ -90,8 +87,6 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-//                            print("response: \(responseDictionary)")
-                            
                             self.movies = responseDictionary["results"] as? [NSDictionary]
                             self.collectionView.reloadData()
                     }
@@ -142,6 +137,16 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String {
             let imageUrl = NSURL(string: baseUrl + posterPath)
+            let request = NSURLRequest(URL: imageUrl!, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 30)
+            cell.posterView.setImageWithURLRequest(request, placeholderImage: nil, success: { (_, _, image) -> Void in
+                cell.posterView.alpha = 0
+                cell.posterView.image = image
+                UIView.animateWithDuration(0.4, animations: { () -> Void in
+                    cell.posterView.alpha = 1
+                })
+                }, failure: { (_, _, _) -> Void in
+                cell.posterView.image = nil
+            })
             cell.posterView.setImageWithURL(imageUrl!)
         }
         else {
@@ -154,6 +159,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func toggleLayout(sender: AnyObject) {
         tableLayout = !tableLayout
         self.collectionView.collectionViewLayout.invalidateLayout()
+        let newImage = UIImage(named: tableLayout ? "GridButton" : "TableButton")
+        layoutToggle.setImage(newImage, forState: .Normal)
     }
 
     
