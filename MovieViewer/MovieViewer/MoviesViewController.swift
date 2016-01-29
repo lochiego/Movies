@@ -10,16 +10,20 @@ import UIKit
 import AFNetworking
 
 let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
 
+let urlString = "https://api.themoviedb.org/3/movie/"
 
 class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    let nowPlayingUrl = NSURL(string: "\(urlString)now_playing?api_key=\(apiKey)")
 
     @IBOutlet weak var collectionView: UICollectionView!
     var movies: [NSDictionary]?
     
     var alert: UIAlertController!
     var refresh: UIRefreshControl!
+    
+    var firstLaunch = true
     
     @IBOutlet weak var layoutToggle: UIButton!
     
@@ -40,15 +44,18 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         layoutToggle.clipsToBounds = true
         layoutToggle.layer.cornerRadius = 22
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        alert = UIAlertController(title: nil, message: "Getting movie data...", preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true, completion: nil)
         
         self.pollMovieData({
             self.dismissViewControllerAnimated(true, completion: nil)
+            self.firstLaunch = false
         })
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if firstLaunch {
+            alert = UIAlertController(title: nil, message: "Getting movie data...", preferredStyle: .Alert)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,8 +72,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func pollMovieData(completion:(()->())?)
     {
-            let request = NSURLRequest(
-            URL: url!,
+        let request = NSURLRequest(
+            URL: nowPlayingUrl!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
             timeoutInterval: 10)
         
@@ -84,7 +91,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-                            print("response: \(responseDictionary)")
+//                            print("response: \(responseDictionary)")
                             
                             self.movies = responseDictionary["results"] as? [NSDictionary]
                             self.collectionView.reloadData()
@@ -144,20 +151,24 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func toggleLayout(sender: AnyObject) {
         tableLayout = !tableLayout
         self.collectionView.collectionViewLayout.invalidateLayout()
     }
 
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        let detailsController = segue.destinationViewController as! MovieDetailsViewController
+
+        // Pass the selected object to the new view controller.
+        let index = collectionView.indexPathsForSelectedItems()?.first!
+        let movie = movies![index!.item]
+        detailsController.movie = movie
+        detailsController.poster = (collectionView.cellForItemAtIndexPath(index!) as! MovieCell).posterView.image
+    }
 }
