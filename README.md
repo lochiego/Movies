@@ -1,6 +1,6 @@
-# Project 1 - *Movies*
+# Project 1 - *On Screen*
 
-**Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**On Screen** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: **7.5** hours spent in total
 
