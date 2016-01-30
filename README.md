@@ -2,7 +2,7 @@
 
 **Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **6.5** hours spent in total
+Time spent: **7.5** hours spent in total
 
 ## User Stories
 
@@ -23,27 +23,29 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
 - [X] User can toggle between table view and grid view
 - [X] User can view details on movie by selecting it
 - [X] Text sizes based on accessibility setting
+- [X] Sort by release date or rating
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. Collection View Layouts
-2. Navigation Controllers and segues between view controllers
+1. Managing multiple 'pages' of RESTful data
+2. Popups
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/XcFQw2r.gif?1' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+Switching between table layout and grid layout (hiding and showing the text) was a problem for a while, until I realized the default settings for the repositioning made sense. I also had to learn how to work with the flow layouts to get the toggle effect I wanted. I also had to look for how I might get the poster to fade in, and don't know if there was a better way to do it than what I did.
 
 ## License
 
