@@ -11,14 +11,16 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet weak var posterView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var averageLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var runtimeLabel: UILabel!
-    @IBOutlet weak var castLabel: UITextView!
-    @IBOutlet weak var overviewLabel: UITextView!
+    @IBOutlet weak var castLabel: UILabel!
+    @IBOutlet weak var overviewTitleLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     
-    @IBOutlet weak var rateView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var movie: NSDictionary!
     var movieAltData: NSDictionary?
@@ -26,12 +28,12 @@ class MovieDetailsViewController: UIViewController {
     var credits: [NSDictionary]?
     
     let printFormatter = printedFormatter()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.title = movie["title"] as? String
+        self.titleLabel.text = movie["title"] as? String
         let average = movie["vote_average"] as? Double
         let count = movie["vote_count"] as? Int
         let overview = movie["overview"] as? String
@@ -55,12 +57,24 @@ class MovieDetailsViewController: UIViewController {
         else {
             overviewLabel.text = "Synopsis not available"
         }
+        overviewLabel.sizeToFit()
+        
         releaseLabel.text = printFormatter.stringFromDate(releaseDate)
         
         posterView.image = poster
         
         loadMovieInfo()
         loadCreditsInfo()
+    }
+    
+    func sizeForContent() -> CGSize
+    {
+        var contentRect = CGRectZero
+        for view in scrollView.subviews {
+            contentRect = CGRectUnion(contentRect, view.frame);
+        }
+        contentRect.size.height += 20 // Padding for synopsis
+        return contentRect.size
     }
     
     func fillMovieAltData()
@@ -77,10 +91,17 @@ class MovieDetailsViewController: UIViewController {
             for role in credits {
                 creditString += role["name"]! as! String + ", "
             }
-            creditString = creditString.substringToIndex(creditString.endIndex.predecessor())
+            creditString = creditString.substringToIndex(creditString.endIndex.predecessor().predecessor())
         }
         
         castLabel.text = creditString
+        castLabel.sizeToFit()
+        
+        let offset = castLabel.frame.height - 46
+        overviewTitleLabel.frame.origin.y += offset
+        overviewLabel.frame.origin.y += offset
+        
+        scrollView.contentSize = sizeForContent()
     }
     
     func loadMovieInfo()
@@ -155,6 +176,6 @@ class MovieDetailsViewController: UIViewController {
 private func printedFormatter() -> NSDateFormatter
 {
     let formatter = NSDateFormatter()
-    formatter.dateFormat = "MMM dd, yy"
+    formatter.dateStyle = .MediumStyle// Format = "MMM dd, yy"
     return formatter
 }
