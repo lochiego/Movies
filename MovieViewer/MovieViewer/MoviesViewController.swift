@@ -20,12 +20,16 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     let nowPlayingUrl = NSURL(string: "\(urlString)now_playing?api_key=\(apiKey)")
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var sortButton: UIBarButtonItem!
+    
     var movies: [NSDictionary]?
     
     var alert: UIAlertController!
     var refresh: UIRefreshControl!
     
     var firstLaunch = true
+    
+    var activeComparer = releaseCompare
     
     @IBOutlet weak var layoutToggle: UIButton!
         
@@ -72,6 +76,28 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         })
     }
     
+    @IBAction func displayFilter()
+    {
+        let alert = UIAlertController(title: nil, message: "Sort by", preferredStyle: .ActionSheet)
+        alert.addAction(UIAlertAction(title: "Release Date", style: .Default, handler: { (_) -> Void in
+            if self.movies != nil {
+                self.activeComparer = releaseCompare
+                self.movies!.sortInPlace(self.activeComparer)
+                self.collectionView.reloadData()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Rating", style: .Default, handler: { (_) -> Void in
+            if self.movies != nil {
+                self.activeComparer = ratingCompare
+                self.movies!.sortInPlace(self.activeComparer)
+                self.collectionView.reloadData()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
     func pollMovieData(completion:(()->())?)
     {
         let request = NSURLRequest(
@@ -87,7 +113,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-                            self.movies = responseDictionary["results"] as? [NSDictionary]
+                            print(responseDictionary)
+                            self.movies = (responseDictionary["results"] as? [NSDictionary])?.sort(self.activeComparer)
                             self.collectionView.reloadData()
                     }
                 }
@@ -177,4 +204,24 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         detailsController.movie = movie
         detailsController.poster = (collectionView.cellForItemAtIndexPath(index!) as! MovieCell).posterView.image
     }
+}
+
+func releaseDateFormatter() -> NSDateFormatter {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter
+}
+
+let formatter = releaseDateFormatter()
+
+private func releaseCompare(movie1: NSDictionary, movie2: NSDictionary) -> Bool {
+    let date1 = formatter.dateFromString(movie1["release_date"] as! String)
+    let date2 = formatter.dateFromString(movie2["release_date"] as! String)
+    return date1!.timeIntervalSince1970 > date2!.timeIntervalSince1970
+}
+
+private func ratingCompare(movie1: NSDictionary, movie2: NSDictionary) -> Bool {
+    let rating1 = movie1["vote_average"] as! Double
+    let rating2 = movie2["vote_average"] as! Double
+    return rating1 > rating2
 }

@@ -16,6 +16,9 @@
 		0777FD011C5B2D5200C6A064 /* TableButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCFA1C5B2D5200C6A064 /* TableButton.png */; };
 		0777FD021C5B2D5200C6A064 /* TableButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCFB1C5B2D5200C6A064 /* TableButton@2x.png */; };
 		0777FD031C5B2D5200C6A064 /* TableButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FCFC1C5B2D5200C6A064 /* TableButton@3x.png */; };
+		0777FD071C5C55CF00C6A064 /* Sort.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FD041C5C55CF00C6A064 /* Sort.png */; };
+		0777FD081C5C55CF00C6A064 /* Sort@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FD051C5C55CF00C6A064 /* Sort@2x.png */; };
+		0777FD091C5C55CF00C6A064 /* Sort@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0777FD061C5C55CF00C6A064 /* Sort@3x.png */; };
 		07BB40641C544F820001D2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BB40631C544F820001D2B2 /* AppDelegate.swift */; };
 		07BB40691C544F820001D2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BB40671C544F820001D2B2 /* Main.storyboard */; };
 		07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BB406A1C544F820001D2B2 /* Assets.xcassets */; };
@@ -35,6 +38,9 @@
 		0777FCFA1C5B2D5200C6A064 /* TableButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableButton.png; sourceTree = "<group>"; };
 		0777FCFB1C5B2D5200C6A064 /* TableButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TableButton@2x.png"; sourceTree = "<group>"; };
 		0777FCFC1C5B2D5200C6A064 /* TableButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TableButton@3x.png"; sourceTree = "<group>"; };
+		0777FD041C5C55CF00C6A064 /* Sort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sort.png; sourceTree = "<group>"; };
+		0777FD051C5C55CF00C6A064 /* Sort@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sort@2x.png"; sourceTree = "<group>"; };
+		0777FD061C5C55CF00C6A064 /* Sort@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sort@3x.png"; sourceTree = "<group>"; };
 		07BB40601C544F820001D2B2 /* On Screen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On Screen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB40631C544F820001D2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BB40681C544F820001D2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +69,9 @@
 		0777FCF51C5B2D5200C6A064 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0777FD041C5C55CF00C6A064 /* Sort.png */,
+				0777FD051C5C55CF00C6A064 /* Sort@2x.png */,
+				0777FD061C5C55CF00C6A064 /* Sort@3x.png */,
 				0777FCF61C5B2D5200C6A064 /* Buttons.pxm */,
 				0777FCF71C5B2D5200C6A064 /* GridButton.png */,
 				0777FCF81C5B2D5200C6A064 /* GridButton@2x.png */,
@@ -208,9 +217,12 @@
 				0777FD021C5B2D5200C6A064 /* TableButton@2x.png in Resources */,
 				0777FCFF1C5B2D5200C6A064 /* GridButton@2x.png in Resources */,
 				07BB406E1C544F820001D2B2 /* LaunchScreen.storyboard in Resources */,
+				0777FD081C5C55CF00C6A064 /* Sort@2x.png in Resources */,
 				0777FD001C5B2D5200C6A064 /* GridButton@3x.png in Resources */,
 				0777FCFD1C5B2D5200C6A064 /* Buttons.pxm in Resources */,
+				0777FD091C5C55CF00C6A064 /* Sort@3x.png in Resources */,
 				07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */,
+				0777FD071C5C55CF00C6A064 /* Sort.png in Resources */,
 				07BB40691C544F820001D2B2 /* Main.storyboard in Resources */,
 				0777FD011C5B2D5200C6A064 /* TableButton.png in Resources */,
 				0777FCFE1C5B2D5200C6A064 /* GridButton.png in Resources */,
