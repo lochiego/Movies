@@ -212,11 +212,11 @@ func releaseDateFormatter() -> NSDateFormatter {
     return formatter
 }
 
-let formatter = releaseDateFormatter()
+let releaseFormatter = releaseDateFormatter()
 
 private func releaseCompare(movie1: NSDictionary, movie2: NSDictionary) -> Bool {
-    let date1 = formatter.dateFromString(movie1["release_date"] as! String)
-    let date2 = formatter.dateFromString(movie2["release_date"] as! String)
+    let date1 = releaseFormatter.dateFromString(movie1["release_date"] as! String)
+    let date2 = releaseFormatter.dateFromString(movie2["release_date"] as! String)
     return date1!.timeIntervalSince1970 > date2!.timeIntervalSince1970
 }
 

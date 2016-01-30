@@ -13,6 +13,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var posterView: UIImageView!
     @IBOutlet weak var averageLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var runtimeLabel: UILabel!
     @IBOutlet weak var castLabel: UITextView!
     @IBOutlet weak var overviewLabel: UITextView!
@@ -23,6 +24,8 @@ class MovieDetailsViewController: UIViewController {
     var movieAltData: NSDictionary?
     var poster: UIImage!
     var credits: [NSDictionary]?
+    
+    let printFormatter = printedFormatter()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,7 @@ class MovieDetailsViewController: UIViewController {
         let average = movie["vote_average"] as? Double
         let count = movie["vote_count"] as? Int
         let overview = movie["overview"] as? String
+        let releaseDate = releaseFormatter.dateFromString(movie["release_date"] as! String)!
         
         if let average = average {
             averageLabel.text = "\(average)"
@@ -51,6 +55,7 @@ class MovieDetailsViewController: UIViewController {
         else {
             overviewLabel.text = "Synopsis not available"
         }
+        releaseLabel.text = printFormatter.stringFromDate(releaseDate)
         
         posterView.image = poster
         
@@ -145,4 +150,11 @@ class MovieDetailsViewController: UIViewController {
 
     }
 
+}
+
+private func printedFormatter() -> NSDateFormatter
+{
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "MMM dd, yy"
+    return formatter
 }
