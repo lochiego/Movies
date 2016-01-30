@@ -35,7 +35,7 @@
 		0777FCFA1C5B2D5200C6A064 /* TableButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableButton.png; sourceTree = "<group>"; };
 		0777FCFB1C5B2D5200C6A064 /* TableButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TableButton@2x.png"; sourceTree = "<group>"; };
 		0777FCFC1C5B2D5200C6A064 /* TableButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TableButton@3x.png"; sourceTree = "<group>"; };
-		07BB40601C544F820001D2B2 /* MovieViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BB40601C544F820001D2B2 /* On Screen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On Screen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB40631C544F820001D2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BB40681C544F820001D2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07BB406A1C544F820001D2B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 		07BB40611C544F820001D2B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07BB40601C544F820001D2B2 /* MovieViewer.app */,
+				07BB40601C544F820001D2B2 /* On Screen.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,9 +145,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		07BB405F1C544F820001D2B2 /* MovieViewer */ = {
+		07BB405F1C544F820001D2B2 /* On Screen */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07BB40721C544F820001D2B2 /* Build configuration list for PBXNativeTarget "MovieViewer" */;
+			buildConfigurationList = 07BB40721C544F820001D2B2 /* Build configuration list for PBXNativeTarget "On Screen" */;
 			buildPhases = (
 				8C02E35F3B24F0818991826A /* Check Pods Manifest.lock */,
 				07BB405C1C544F820001D2B2 /* Sources */,
@@ -160,9 +160,9 @@
 			);
 			dependencies = (
 			);
-			name = MovieViewer;
+			name = "On Screen";
 			productName = MovieViewer;
-			productReference = 07BB40601C544F820001D2B2 /* MovieViewer.app */;
+			productReference = 07BB40601C544F820001D2B2 /* On Screen.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -181,7 +181,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 07BB405B1C544F820001D2B2 /* Build configuration list for PBXProject "MovieViewer" */;
+			buildConfigurationList = 07BB405B1C544F820001D2B2 /* Build configuration list for PBXProject "On Screen" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -194,7 +194,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07BB405F1C544F820001D2B2 /* MovieViewer */,
+				07BB405F1C544F820001D2B2 /* On Screen */,
 			);
 		};
 /* End PBXProject section */
@@ -391,7 +391,7 @@
 				INFOPLIST_FILE = MovieViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gonzalez.eric.MovieViewer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "On Screen";
 			};
 			name = Debug;
 		};
@@ -403,14 +403,14 @@
 				INFOPLIST_FILE = MovieViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gonzalez.eric.MovieViewer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "On Screen";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07BB405B1C544F820001D2B2 /* Build configuration list for PBXProject "MovieViewer" */ = {
+		07BB405B1C544F820001D2B2 /* Build configuration list for PBXProject "On Screen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07BB40701C544F820001D2B2 /* Debug */,
@@ -419,7 +419,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07BB40721C544F820001D2B2 /* Build configuration list for PBXNativeTarget "MovieViewer" */ = {
+		07BB40721C544F820001D2B2 /* Build configuration list for PBXNativeTarget "On Screen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07BB40731C544F820001D2B2 /* Debug */,
