@@ -22,7 +22,7 @@ class MovieDetailsViewController: UIViewController {
     
     var movie: NSDictionary!
     var movieAltData: NSDictionary?
-    var poster: UIImage!
+    var poster: UIImage?
     var credits: [NSDictionary]?
     
     let printFormatter = printedFormatter()

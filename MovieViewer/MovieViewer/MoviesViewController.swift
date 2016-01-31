@@ -196,13 +196,15 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
-        let detailsController = segue.destinationViewController as! MovieDetailsViewController
 
-        // Pass the selected object to the new view controller.
-        let index = collectionView.indexPathsForSelectedItems()?.first!
+        // Pass the selected object to the new view
+        let cell = sender as! MovieCell
+        let index = collectionView.indexPathForCell(cell)
         let movie = movies![index!.item]
+        
+        let detailsController = segue.destinationViewController as! MovieDetailsViewController
         detailsController.movie = movie
-        detailsController.poster = (collectionView.cellForItemAtIndexPath(index!) as! MovieCell).posterView.image
+        detailsController.poster = cell.posterView.image
     }
 }
 
