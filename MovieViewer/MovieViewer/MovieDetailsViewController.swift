@@ -33,7 +33,7 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.titleLabel.text = movie["title"] as? String
+        self.title = movie["title"] as? String
         let average = movie["vote_average"] as? Double
         let count = movie["vote_count"] as? Int
         let overview = movie["overview"] as? String
@@ -117,7 +117,7 @@ class MovieDetailsViewController: UIViewController {
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-//                            print("response: \(responseDictionary)")
+                            print("response: \(responseDictionary)")
                             
                             self.movieAltData = responseDictionary
                             
@@ -150,7 +150,7 @@ class MovieDetailsViewController: UIViewController {
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-                            print("response: \(responseDictionary)")
+//                            print("response: \(responseDictionary)")
                             
                             self.credits = responseDictionary["cast"] as? [NSDictionary]
                             self.fillCreditsData()
