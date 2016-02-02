@@ -10,14 +10,13 @@ import UIKit
 import AFNetworking
 
 let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-
-let urlString = "https://api.themoviedb.org/3/movie/"
+let baseUrl = "https://api.themoviedb.org/3/movie/"
 
 var session: NSURLSession!
 
 class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let nowPlayingUrl = NSURL(string: "\(urlString)now_playing?api_key=\(apiKey)")
+    var endpoint: String!
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sortButton: UIBarButtonItem!
@@ -50,6 +49,10 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         refresh.addTarget(self, action: Selector("refreshData"), forControlEvents: .ValueChanged)
         collectionView.addSubview(refresh)
         collectionView.alwaysBounceVertical = true
+        
+        layoutToggle.clipsToBounds = true
+        layoutToggle.layer.cornerRadius = 22
+        layoutToggle.layer.backgroundColor = UIColor.whiteColor().CGColor
         
         self.pollMovieData({
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -101,7 +104,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     func pollMovieData(completion:(()->())?)
     {
         let request = NSURLRequest(
-            URL: nowPlayingUrl!,
+            URL: NSURL(string: "\(baseUrl)\(endpoint)?api_key=\(apiKey)")!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
             timeoutInterval: 10)
         
@@ -113,7 +116,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-                            print(responseDictionary)
+//                            print(responseDictionary)
                             self.movies = (responseDictionary["results"] as? [NSDictionary])?.sort(self.activeComparer)
                             self.collectionView.reloadData()
                     }

@@ -11,14 +11,16 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
 
     @IBOutlet weak var posterView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var averageLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var runtimeLabel: UILabel!
-    @IBOutlet weak var castLabel: UITextView!
-    @IBOutlet weak var overviewLabel: UITextView!
+    @IBOutlet weak var castLabel: UILabel!
+    @IBOutlet weak var overviewTitleLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     
-    @IBOutlet weak var rateView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var movie: NSDictionary!
     var movieAltData: NSDictionary?
@@ -26,7 +28,7 @@ class MovieDetailsViewController: UIViewController {
     var credits: [NSDictionary]?
     
     let printFormatter = printedFormatter()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,12 +57,24 @@ class MovieDetailsViewController: UIViewController {
         else {
             overviewLabel.text = "Synopsis not available"
         }
+        overviewLabel.sizeToFit()
+        
         releaseLabel.text = printFormatter.stringFromDate(releaseDate)
         
         posterView.image = poster
         
         loadMovieInfo()
         loadCreditsInfo()
+    }
+    
+    func sizeForContent() -> CGSize
+    {
+        var contentRect = CGRectZero
+        for view in scrollView.subviews {
+            contentRect = CGRectUnion(contentRect, view.frame);
+        }
+        contentRect.size.height += 20 // Padding for synopsis
+        return contentRect.size
     }
     
     func fillMovieAltData()
@@ -77,15 +91,22 @@ class MovieDetailsViewController: UIViewController {
             for role in credits {
                 creditString += role["name"]! as! String + ", "
             }
-            creditString = creditString.substringToIndex(creditString.endIndex.predecessor())
+            creditString = creditString.substringToIndex(creditString.endIndex.predecessor().predecessor())
         }
         
         castLabel.text = creditString
+        castLabel.sizeToFit()
+        
+        let offset = castLabel.frame.height - 46
+        overviewTitleLabel.frame.origin.y += offset
+        overviewLabel.frame.origin.y += offset
+        
+        scrollView.contentSize = sizeForContent()
     }
     
     func loadMovieInfo()
     {
-        let url = NSURL(string: "\(urlString)\(movie["id"]!)?api_key=\(apiKey)")
+        let url = NSURL(string: "\(baseUrl)\(movie["id"]!)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -96,7 +117,7 @@ class MovieDetailsViewController: UIViewController {
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-//                            print("response: \(responseDictionary)")
+                            print("response: \(responseDictionary)")
                             
                             self.movieAltData = responseDictionary
                             
@@ -118,7 +139,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func loadCreditsInfo() {
-        let url = NSURL(string: "\(urlString)\(movie["id"]!)/credits?api_key=\(apiKey)")
+        let url = NSURL(string: "\(baseUrl)\(movie["id"]!)/credits?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -129,7 +150,7 @@ class MovieDetailsViewController: UIViewController {
                 if let data = dataOrNil {
                     if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                         data, options:[]) as? NSDictionary {
-                            print("response: \(responseDictionary)")
+//                            print("response: \(responseDictionary)")
                             
                             self.credits = responseDictionary["cast"] as? [NSDictionary]
                             self.fillCreditsData()
@@ -155,6 +176,6 @@ class MovieDetailsViewController: UIViewController {
 private func printedFormatter() -> NSDateFormatter
 {
     let formatter = NSDateFormatter()
-    formatter.dateFormat = "MMM dd, yy"
+    formatter.dateStyle = .MediumStyle// Format = "MMM dd, yy"
     return formatter
 }
