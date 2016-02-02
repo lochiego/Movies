@@ -70,7 +70,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="z3t-2b-Qx8">
-                                <rect key="frame" x="256" y="504" width="44" height="44"/>
+                                <rect key="frame" x="256" y="465" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="TableButton.png"/>
                                 <connections>
@@ -196,7 +196,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Dpc-9C-eRs">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tZO-hH-dVm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="tZO-hH-dVm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="jjk-xp-RCt">
