@@ -106,7 +106,7 @@ class MovieDetailsViewController: UIViewController {
     
     func loadMovieInfo()
     {
-        let url = NSURL(string: "\(urlString)\(movie["id"]!)?api_key=\(apiKey)")
+        let url = NSURL(string: "\(baseUrl)\(movie["id"]!)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -139,7 +139,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func loadCreditsInfo() {
-        let url = NSURL(string: "\(urlString)\(movie["id"]!)/credits?api_key=\(apiKey)")
+        let url = NSURL(string: "\(baseUrl)\(movie["id"]!)/credits?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
