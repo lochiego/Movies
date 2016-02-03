@@ -126,7 +126,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         else {
           let alert = UIAlertController(title: "Warning", message: "You're out of range. Get to the Internet and try again.", preferredStyle: .Alert)
-          alert.addAction(UIAlertAction(title: "Hunt", style: .Default, handler: { (_) -> Void in
+          alert.addAction(UIAlertAction(title: "Retry", style: .Default, handler: { (_) -> Void in
             self.pollMovieData(nil)
           }))
           alert.addAction(UIAlertAction(title: "Give Up", style: .Destructive, handler: { (_) -> Void in
