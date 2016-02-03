@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var posterView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
@@ -19,5 +19,5 @@ class MovieCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
 }
