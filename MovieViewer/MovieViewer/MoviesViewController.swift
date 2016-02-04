@@ -173,6 +173,10 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
       cell = collectionView.dequeueReusableCellWithReuseIdentifier("MovieGridCell", forIndexPath: indexPath) as! MovieCell
     }
     
+    let view = UIView(frame: cell.frame)
+    view.backgroundColor = UIColor ( red: 0.502, green: 0.502, blue: 0.0, alpha: 1.0 )
+    cell.selectedBackgroundView = view
+    
     let baseUrl = "http://image.tmdb.org/t/p/w500"
     if let posterPath = movie["poster_path"] as? String {
       let imageUrl = NSURL(string: baseUrl + posterPath)
