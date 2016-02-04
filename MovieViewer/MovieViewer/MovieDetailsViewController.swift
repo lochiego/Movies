@@ -10,6 +10,7 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
   
+  @IBOutlet weak var backdropReflectionView: UIImageView!
   @IBOutlet weak var backdropView: UIImageView!
   @IBOutlet weak var posterView: UIImageView!
   @IBOutlet weak var averageLabel: UILabel!
@@ -65,6 +66,19 @@ class MovieDetailsViewController: UIViewController {
     posterView.layer.borderColor = UIColor.blackColor().CGColor
     posterView.layer.borderWidth = 1
     
+    // Set up mirror effect
+    var transform = backdropReflectionView.layer.transform
+    transform = CATransform3DScale(transform, 1, -1, 1)
+    backdropReflectionView.layer.transform = transform
+
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.frame = backdropReflectionView.bounds;
+    gradientLayer.colors = [UIColor(white: 0, alpha: 0).CGColor, UIColor(white: 0, alpha: 1).CGColor]
+    gradientLayer.startPoint = CGPoint(x: 0, y: 1)
+    gradientLayer.endPoint = CGPoint(x: 0, y: 0)
+    
+    backdropReflectionView.layer.mask = gradientLayer
+    
     loadMovieInfo()
     loadCreditsInfo()
   }
@@ -90,11 +104,18 @@ class MovieDetailsViewController: UIViewController {
       let request = NSURLRequest(URL: imageUrl!)
       backdropView.setImageWithURLRequest(request, placeholderImage: nil, success: { (request, response, image) -> Void in
         self.backdropView.alpha = 0
+        self.backdropReflectionView.alpha = 0
         
         self.backdropView.image = image
+        self.backdropReflectionView.image = image
+        
         UIView.animateWithDuration(0.4, animations: { () -> Void in
           self.backdropView.alpha = 1
-          }, completion: nil)
+          self.backdropReflectionView.alpha = 1
+          }, completion: { (success) in
+            let highResUrl = NSURL(string: "http://image.tmdb.org/t/p/w640" + backgroundPath)
+            self.backdropView.setImageWithURL(highResUrl!)
+        })
         }, failure: nil)
     }
   }
