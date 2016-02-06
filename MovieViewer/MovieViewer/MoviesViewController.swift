@@ -119,7 +119,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         if let data = dataOrNil {
           if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
             data, options:[]) as? NSDictionary {
-              //                            print(responseDictionary)
+                                          print(responseDictionary)
               self.movies = (responseDictionary["results"] as? [NSDictionary])?.sort(self.activeComparer)
               self.collectionView.reloadData()
           }

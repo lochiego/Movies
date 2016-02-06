@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0724E6C11C5AC9B8008AC5EF /* MoviesTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724E6C01C5AC9B8008AC5EF /* MoviesTableLayout.swift */; };
 		0724E6C31C5ADFD7008AC5EF /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724E6C21C5ADFD7008AC5EF /* MovieDetailsViewController.swift */; };
+		077706E61C668B5C00A768C3 /* High School USA Sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 077706E51C668B5C00A768C3 /* High School USA Sans.ttf */; };
 		07BB40641C544F820001D2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BB40631C544F820001D2B2 /* AppDelegate.swift */; };
 		07BB40691C544F820001D2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BB40671C544F820001D2B2 /* Main.storyboard */; };
 		07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BB406A1C544F820001D2B2 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		0724E6C01C5AC9B8008AC5EF /* MoviesTableLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableLayout.swift; sourceTree = "<group>"; };
 		0724E6C21C5ADFD7008AC5EF /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		077706E51C668B5C00A768C3 /* High School USA Sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "High School USA Sans.ttf"; sourceTree = "<group>"; };
 		07BB40601C544F820001D2B2 /* On Screen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On Screen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB40631C544F820001D2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BB40681C544F820001D2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		07BB40621C544F820001D2B2 /* MovieViewer */ = {
 			isa = PBXGroup;
 			children = (
+				077706E51C668B5C00A768C3 /* High School USA Sans.ttf */,
 				07BB407A1C549AF30001D2B2 /* View Controllers */,
 				07BB40771C549ABC0001D2B2 /* Views */,
 				07BB40631C544F820001D2B2 /* AppDelegate.swift */,
@@ -185,6 +188,7 @@
 			files = (
 				07BB406E1C544F820001D2B2 /* LaunchScreen.storyboard in Resources */,
 				07BB406B1C544F820001D2B2 /* Assets.xcassets in Resources */,
+				077706E61C668B5C00A768C3 /* High School USA Sans.ttf in Resources */,
 				07BB40691C544F820001D2B2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
