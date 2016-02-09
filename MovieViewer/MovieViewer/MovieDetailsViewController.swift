@@ -65,6 +65,7 @@ class MovieDetailsViewController: UIViewController {
     posterView.image = poster
     posterView.layer.borderColor = UIColor.blackColor().CGColor
     posterView.layer.borderWidth = 1
+    posterView.clipsToBounds = true
     
     // Set up mirror effect
     var transform = backdropReflectionView.layer.transform
